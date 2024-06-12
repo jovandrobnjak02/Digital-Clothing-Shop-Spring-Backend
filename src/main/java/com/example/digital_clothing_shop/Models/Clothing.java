@@ -31,21 +31,19 @@ public class Clothing {
 
     @ManyToMany
     @JoinTable(
-            name = "clothing_size",
+            name = "clothing_sizes",
             joinColumns = @JoinColumn(name = "clothing_id"),
             inverseJoinColumns = @JoinColumn(name = "size_id")
     )
-    private Set<Order> clothingSizes;
+    private Set<Size> clothingSizes;
 
-    @ManyToMany
-    @JoinTable(
-            name = "order_clothing",
-            joinColumns = @JoinColumn(name = "clothing_id"),
-            inverseJoinColumns = @JoinColumn(name = "order_id")
-    )
-    private Set<Order> clothingOrders;
+    @OneToMany(mappedBy = "clothing", cascade = CascadeType.ALL)
+    private Set<ClothingColor> colors;
 
-    public Clothing(Long id, String itemName, Double price, String manufacturer, String type, Date createdAt, Set<Order> clothingSizes, Set<Order> clothingOrders) {
+    public Clothing() {
+    }
+
+    public Clothing(Long id, String itemName, Double price, String manufacturer, String type, Date createdAt, Set<Size> clothingSizes, Set<ClothingColor> colors) {
         this.id = id;
         this.itemName = itemName;
         this.price = price;
@@ -53,7 +51,7 @@ public class Clothing {
         this.type = type;
         this.createdAt = createdAt;
         this.clothingSizes = clothingSizes;
-        this.clothingOrders = clothingOrders;
+        this.colors = colors;
     }
 
     public Long getId() {
@@ -104,19 +102,19 @@ public class Clothing {
         this.createdAt = createdAt;
     }
 
-    public Set<Order> getClothingSizes() {
+    public Set<Size> getClothingSizes() {
         return clothingSizes;
     }
 
-    public void setClothingSizes(Set<Order> clothingSizes) {
+    public void setClothingSizes(Set<Size> clothingSizes) {
         this.clothingSizes = clothingSizes;
     }
 
-    public Set<Order> getClothingOrders() {
-        return clothingOrders;
+    public Set<ClothingColor> getColors() {
+        return colors;
     }
 
-    public void setClothingOrders(Set<Order> clothingOrders) {
-        this.clothingOrders = clothingOrders;
+    public void setColors(Set<ClothingColor> colors) {
+        this.colors = colors;
     }
 }

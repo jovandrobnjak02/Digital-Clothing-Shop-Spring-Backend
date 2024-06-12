@@ -49,6 +49,9 @@ public class User {
         this.usersOrders = usersOrders;
     }
 
+    public User() {
+    }
+
     public Long getId() {
         return id;
     }

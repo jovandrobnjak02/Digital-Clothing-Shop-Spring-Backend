@@ -19,6 +19,9 @@ public class ClothingReview {
     @JoinColumn(name = "clothing_id", nullable = false)
     private Clothing clothing;
 
+    public ClothingReview() {
+    }
+
     public ClothingReview(Long id, int grade, String comment, Clothing clothing) {
         this.id = id;
         this.grade = grade;

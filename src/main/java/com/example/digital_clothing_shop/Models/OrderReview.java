@@ -26,6 +26,9 @@ public class OrderReview {
         this.order = order;
     }
 
+    public OrderReview() {
+    }
+
     public Long getId() {
         return id;
     }

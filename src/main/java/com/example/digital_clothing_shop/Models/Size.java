@@ -18,6 +18,9 @@ public class Size {
         this.size = size;
     }
 
+    public Size() {
+    }
+
     public Long getId() {
         return id;
     }

@@ -27,13 +27,9 @@ public class ClothingColor {
         this.imageSrc = imageSrc;
     }
 
-    public Clothing getClothing() {
-        return clothing;
+    public ClothingColor() {
     }
 
-    public void setClothing(Clothing clothing) {
-        this.clothing = clothing;
-    }
 
     public Long getId() {
         return id;

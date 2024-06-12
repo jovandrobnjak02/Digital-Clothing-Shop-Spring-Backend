@@ -43,6 +43,9 @@ public class Order {
         this.orderedClothes = orderedClothes;
     }
 
+    public Order() {
+    }
+
     public Long getId() {
         return id;
     }

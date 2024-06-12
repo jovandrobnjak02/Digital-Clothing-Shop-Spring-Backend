@@ -32,6 +32,9 @@ public class Favorite {
         this.id = id;
     }
 
+    public Favorite() {
+    }
+
     public User getUser() {
         return user;
     }
