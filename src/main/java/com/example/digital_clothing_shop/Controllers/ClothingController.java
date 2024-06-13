@@ -12,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/products")
@@ -58,25 +57,25 @@ public class ClothingController {
         return ResponseEntity.ok().<Void>build();
     }
 
-    @GetMapping("/{clothingId}")
-    public Optional<Clothing> getOne(@PathVariable int clothingId){
-        return this.clothingService.getOne(clothingId);
+    @GetMapping("/id/{clothingId}")
+    public Clothing getOne(@PathVariable int clothingId){
+        return this.clothingService.getOne(clothingId).get();
     }
 
-    @GetMapping("/{itemName}")
+    @GetMapping("/name/{itemName}")
     public Clothing getByName(@PathVariable String itemName){
         return this.clothingService.getByName(itemName);
     }
-    @GetMapping("/{type}")
+    @GetMapping("/type/{type}")
     public List<Clothing> getByType(@PathVariable String type){
         return this.clothingService.getByType(type);
     }
-    @GetMapping("/{manufacturer}")
+    @GetMapping("/manufacturer/{manufacturer}")
     public List<Clothing> getByManufacturer(@PathVariable String manufacturer){
         return this.clothingService.getByManufacturer(manufacturer);
     }
 
-    @PostMapping("/{clothingId}/favorite")
+    @PostMapping("favorite/{clothingId}/favorite")
     public Favorite addToFavorites(@PathVariable Integer clothingId, Integer userId){
         return this.favoritesService.addToFavorites(clothingId, userId);
     }
