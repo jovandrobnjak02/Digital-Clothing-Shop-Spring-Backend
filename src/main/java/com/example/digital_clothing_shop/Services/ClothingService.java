@@ -2,6 +2,7 @@ package com.example.digital_clothing_shop.Services;
 
 import com.example.digital_clothing_shop.Models.Clothing;
 import com.example.digital_clothing_shop.Repositories.ClothingRepository;
+import com.example.digital_clothing_shop.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,11 @@ public class ClothingService {
 
     @Autowired
     private ClothingRepository clothingRepository;
+
+
+
+    @Autowired
+    private UserRepository userRepository;
 
     public List<Clothing> getAllClothes(){
         return this.clothingRepository.findAll();

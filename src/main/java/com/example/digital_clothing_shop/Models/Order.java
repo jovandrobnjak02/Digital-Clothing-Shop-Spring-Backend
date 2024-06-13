@@ -3,6 +3,7 @@ package com.example.digital_clothing_shop.Models;
 import com.example.digital_clothing_shop.Enums.OrderStatus;
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -82,7 +83,7 @@ public class Order {
         return orderedClothes;
     }
 
-    public void setOrderedClothes(Set<Order> orderedClothes) {
+    public void setOrderedClothes(List<Clothing> orderedClothes) {
         this.orderedClothes = orderedClothes;
     }
 }

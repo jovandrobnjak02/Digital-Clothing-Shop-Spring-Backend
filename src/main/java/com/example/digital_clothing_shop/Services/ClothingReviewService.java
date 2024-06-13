@@ -25,7 +25,7 @@ public class ClothingReviewService {
     public List<ClothingReview> getReviewsForClothing(Integer id){
         Optional<Clothing> item = this.clothingRepository.findById(id);
         if(item.isPresent()){
-            return this.clothingReviewRepository.findByClothing(item);
+            return this.clothingReviewRepository.findByClothing(item.get());
         }
         return null;
     }
