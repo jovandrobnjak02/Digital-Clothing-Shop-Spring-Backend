@@ -30,12 +30,7 @@ public class User {
     @Column(name = "password_hash", nullable = false)
     private String passwordHash;
 
-    @ManyToMany
-    @JoinTable(
-            name = "user_orders",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "order_id")
-    )
+    @OneToMany(mappedBy = "orderingUser")
     private Set<Order> usersOrders;
 
     public User(Long id, String firstName, String lastName, String email, String phone, String address, String passwordHash, Set<Order> usersOrders) {

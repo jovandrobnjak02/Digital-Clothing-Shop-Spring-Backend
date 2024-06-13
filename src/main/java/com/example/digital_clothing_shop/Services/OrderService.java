@@ -1,6 +1,7 @@
 package com.example.digital_clothing_shop.Services;
 
 
+import com.example.digital_clothing_shop.Enums.OrderStatus;
 import com.example.digital_clothing_shop.Models.Clothing;
 import com.example.digital_clothing_shop.Models.Order;
 import com.example.digital_clothing_shop.Models.User;
@@ -35,7 +36,7 @@ public class OrderService {
         Optional<User> user = this.userRepository.findById(userId);
 
         if(user.isPresent()){
-            return this.orderRepository.findByUser(user.get());
+            return this.orderRepository.findByOrderingUser(user.get());
         }else{
             return null;
         }
@@ -65,6 +66,14 @@ public class OrderService {
                     .sum();
             order.setOrderedClothes(clothing);
             order.setAmount(amount);
+            return org.springframework.http.ResponseEntity.ok(orderRepository.save(order));
+        }).orElseGet(() -> org.springframework.http.ResponseEntity.notFound().build());
+    }
+
+    public ResponseEntity<Order> updateStatus(Integer orderId, OrderStatus status){
+        return (this.orderRepository.findById(orderId)).map((order) -> {
+
+            order.setStatus(status);
             return org.springframework.http.ResponseEntity.ok(orderRepository.save(order));
         }).orElseGet(() -> org.springframework.http.ResponseEntity.notFound().build());
     }

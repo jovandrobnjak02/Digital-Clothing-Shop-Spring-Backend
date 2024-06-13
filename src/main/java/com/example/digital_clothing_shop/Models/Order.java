@@ -4,7 +4,6 @@ import com.example.digital_clothing_shop.Enums.OrderStatus;
 import jakarta.persistence.*;
 
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "orders")
@@ -20,13 +19,9 @@ public class Order {
     @Column(nullable = false)
     private Double amount;
 
-    @ManyToMany
-    @JoinTable(
-            name = "user_orders",
-            joinColumns = @JoinColumn(name = "order_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id")
-    )
-    private Set<Order> orderingUsers;
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User orderingUser;
 
     @ManyToMany
     @JoinTable(
@@ -34,13 +29,13 @@ public class Order {
             joinColumns = @JoinColumn(name = "order_id"),
             inverseJoinColumns = @JoinColumn(name = "clothing_id")
     )
-    private Set<Order> orderedClothes;
+    private List<Clothing> orderedClothes;
 
-    public Order(Long id, OrderStatus status, Double amount, Set<Order> orderingUsers, Set<Order> orderedClothes) {
+    public Order(Long id, OrderStatus status, Double amount, User orderingUser, List<Clothing> orderedClothes) {
         this.id = id;
         this.status = status;
         this.amount = amount;
-        this.orderingUsers = orderingUsers;
+        this.orderingUser = orderingUser;
         this.orderedClothes = orderedClothes;
     }
 
@@ -71,15 +66,15 @@ public class Order {
         this.amount = amount;
     }
 
-    public Set<Order> getOrderingUsers() {
-        return orderingUsers;
+    public User getOrderingUser() {
+        return orderingUser;
     }
 
-    public void setOrderingUsers(Set<Order> orderingUsers) {
-        this.orderingUsers = orderingUsers;
+    public void setOrderingUser(User orderingUser) {
+        this.orderingUser = orderingUser;
     }
 
-    public Set<Order> getOrderedClothes() {
+    public List<Clothing> getOrderedClothes() {
         return orderedClothes;
     }
 
