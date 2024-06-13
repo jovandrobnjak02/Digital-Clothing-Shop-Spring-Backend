@@ -10,7 +10,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @Column(name = "first_name", nullable = false)
     private String firstName;
@@ -33,7 +33,7 @@ public class User {
     @OneToMany(mappedBy = "orderingUser")
     private Set<Order> usersOrders;
 
-    public User(Long id, String firstName, String lastName, String email, String phone, String address, String passwordHash, Set<Order> usersOrders) {
+    public User(Integer id, String firstName, String lastName, String email, String phone, String address, String passwordHash, Set<Order> usersOrders) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -47,11 +47,11 @@ public class User {
     public User() {
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
