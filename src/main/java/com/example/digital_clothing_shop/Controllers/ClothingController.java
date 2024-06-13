@@ -47,9 +47,8 @@ public class ClothingController {
     }
 
     @PutMapping("/{clothingId}/review/{reviewId}")
-    public ResponseEntity<ClothingReview> editReview(@PathVariable int clothingId, @RequestBody ClothingReviewRequest review){
-        review.setClothingId(clothingId);
-        return this.clothingReviewService.editReview(review);
+    public ResponseEntity<ClothingReview> editReview(@PathVariable int reviewId, @RequestBody ClothingReviewRequest review){
+        return this.clothingReviewService.editReview(reviewId ,review);
     }
 
     @DeleteMapping("/{clothingId}/review/{reviewId}")
