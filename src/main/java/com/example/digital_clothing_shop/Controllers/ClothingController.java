@@ -32,8 +32,8 @@ public class ClothingController {
         return this.clothingReviewService.getReviewsForClothing(clothingId);
     }
     @GetMapping("/{clothingId}/review/{reviewId}")
-    public Optional<ClothingReview> getSpecificReview(@PathVariable int reviewId){
-        return this.clothingReviewService.getSpecificReview(reviewId);
+    public ClothingReview getSpecificReview(@PathVariable int reviewId){
+        return this.clothingReviewService.getSpecificReview(reviewId).get();
     }
     @PostMapping("/{clothingId}/review")
     public ResponseEntity<ClothingReview> createReview(@RequestBody ClothingReviewRequest review, @PathVariable int clothingId){
