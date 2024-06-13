@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  # app:
+  #   build:
+  #     context: .
+  #   container_name: app
+  #   depends_on:
+  #     - db
+  #   environment:
+  #         - SPRING_APPLICATION_NAME=digital_clothing_shop
+  #         - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/clothing_store
+  #         - SPRING_DATASOURCE_USERNAME=postgres
+  #         - SPRING_DATASOURCE_PASSWORD=postgres
+  #         - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+  #         - SPRING_JPA_SHOW_SQL=true
+  #         - SECRET=mySecretValue
+  #         - EXPIRATION=30
+
+  #   ports:
+  #     - "8080:8080"
+  db:
+    image: postgres
+    ports:
+      - '5432:5432'
+    environment:
+      POSGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - ./database_init:/docker-entrypoint-initdb.d

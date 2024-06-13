@@ -33,7 +33,7 @@ public class ClothingController {
     }
 
     @GetMapping("/{clothingId}/reviews")
-    public List<ClothingReview> getReviewsForClothing(@PathVariable int clothingId){
+    public List<ClothingReview> getReviewsForClothing(@PathVariable(name="clothingId") int clothingId){
         return this.clothingReviewService.getReviewsForClothing(clothingId);
     }
     @GetMapping("/{clothingId}/review/{reviewId}")

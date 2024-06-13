@@ -11,6 +11,8 @@ import java.util.Optional;
 @Service
 public class UserService {
 
+//    @Autowired
+//    private PasswordEncoder passwordEncoder;
     @Autowired
     private UserRepository userRepository;
 
@@ -27,6 +29,8 @@ public class UserService {
     }
 
     public User saveUser(User user) {
+//        String newPassword = passwordEncoder.encode(user.getPasswordHash());
+//        user.setPasswordHash(newPassword);
         return userRepository.save(user);
     }
 
