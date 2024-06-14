@@ -43,12 +43,12 @@ public class ClothingController {
     }
 
     @PutMapping("/reviews/edit")
-    public ResponseEntity<ClothingReview> editReview(@PathVariable int reviewId, @RequestBody ClothingReviewRequest review){
+    public ResponseEntity<ClothingReview> editReview(@RequestParam int reviewId, @RequestBody ClothingReviewRequest review){
         return this.clothingReviewService.editReview(review ,reviewId);
     }
 
     @DeleteMapping("/review/delete")
-    public ResponseEntity<Void> deleteReview(@PathVariable int reviewId){
+    public ResponseEntity<Void> deleteReview(@RequestParam int reviewId){
         
         this.clothingReviewService.deleteReview(reviewId);
 
