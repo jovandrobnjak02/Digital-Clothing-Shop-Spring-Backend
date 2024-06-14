@@ -9,7 +9,7 @@ services:
       - db
     environment:
       - spring.application.name=digital_clothing_shop
-      - spring.datasource.url=jdbc:postgresql://localhost:5432/clothing_store
+      - spring.datasource.url=jdbc:postgresql://db:5432/clothing_store
       - spring.datasource.username=postgres
       - spring.datasource.password=postgres
       - spring.jpa.hibernate.ddl-auto=update
