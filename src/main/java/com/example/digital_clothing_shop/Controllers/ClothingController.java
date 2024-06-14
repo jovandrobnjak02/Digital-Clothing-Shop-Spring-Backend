@@ -2,11 +2,10 @@ package com.example.digital_clothing_shop.Controllers;
 
 import com.example.digital_clothing_shop.Models.Clothing;
 import com.example.digital_clothing_shop.Models.ClothingReview;
-import com.example.digital_clothing_shop.Models.Favorite;
 import com.example.digital_clothing_shop.Requests.ClothingReviewRequest;
 import com.example.digital_clothing_shop.Services.ClothingReviewService;
 import com.example.digital_clothing_shop.Services.ClothingService;
-import com.example.digital_clothing_shop.Services.FavoritesService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,43 +22,40 @@ public class ClothingController {
     @Autowired
     private ClothingReviewService clothingReviewService;
 
-    @Autowired
-    private FavoritesService favoritesService;
 
     @GetMapping
     public List<Clothing> getAllClothes(){
         return this.clothingService.getAllClothes();
     }
 
-    @GetMapping("/{clothingId}/reviews")
-    public List<ClothingReview> getReviewsForClothing(@PathVariable int clothingId){
+    @GetMapping("/reviews")
+    public List<ClothingReview> getReviewsForClothing(@RequestParam int clothingId){
         return this.clothingReviewService.getReviewsForClothing(clothingId);
     }
-    @GetMapping("/{clothingId}/review/{reviewId}")
-    public ClothingReview getSpecificReview(@PathVariable int reviewId){
+    @GetMapping("/reviews/review")
+    public ClothingReview getSpecificReview(@RequestParam int reviewId){
         return this.clothingReviewService.getSpecificReview(reviewId).get();
     }
-    @PostMapping("/{clothingId}/review")
-    public ResponseEntity<ClothingReview> createReview(@RequestBody ClothingReviewRequest review, @PathVariable int clothingId){
-        review.setClothingId(clothingId);
+    @PostMapping("/reviews/add")
+    public ResponseEntity<ClothingReview> createReview(@RequestBody ClothingReviewRequest review){
         return ResponseEntity.ok(this.clothingReviewService.createReview(review));
     }
 
-    @PutMapping("/{clothingId}/review/{reviewId}")
+    @PutMapping("/reviews/edit")
     public ResponseEntity<ClothingReview> editReview(@PathVariable int reviewId, @RequestBody ClothingReviewRequest review){
-        return this.clothingReviewService.editReview(reviewId ,review);
+        return this.clothingReviewService.editReview(review ,reviewId);
     }
 
-    @DeleteMapping("/{clothingId}/review/{reviewId}")
+    @DeleteMapping("/review/delete")
     public ResponseEntity<Void> deleteReview(@PathVariable int reviewId){
         this.clothingReviewService.deleteReview(reviewId);
 
         return ResponseEntity.ok().<Void>build();
     }
 
-    @GetMapping("/id/{clothingId}")
-    public Clothing getOne(@PathVariable int clothingId){
-        return this.clothingService.getOne(clothingId).get();
+    @GetMapping("/{clothingId}")
+    public Optional<Clothing> getOne(@PathVariable int clothingId){
+        return this.clothingService.getOne(clothingId);
     }
 
     @GetMapping("/name/{itemName}")
@@ -73,10 +69,5 @@ public class ClothingController {
     @GetMapping("/manufacturer/{manufacturer}")
     public List<Clothing> getByManufacturer(@PathVariable String manufacturer){
         return this.clothingService.getByManufacturer(manufacturer);
-    }
-
-    @PostMapping("favorite/{clothingId}/favorite")
-    public Favorite addToFavorites(@PathVariable Integer clothingId, Integer userId){
-        return this.favoritesService.addToFavorites(clothingId, userId);
     }
 }

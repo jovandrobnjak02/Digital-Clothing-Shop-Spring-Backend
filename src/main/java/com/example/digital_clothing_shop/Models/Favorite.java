@@ -12,13 +12,13 @@ public class Favorite {
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    private UserModel user;
 
     @ManyToOne
     @JoinColumn(name = "clothing_id", nullable = false)
     private Clothing clothing;
 
-    public Favorite(Long id, User user, Clothing clothing) {
+    public Favorite(Long id, UserModel user, Clothing clothing) {
         this.id = id;
         this.user = user;
         this.clothing = clothing;
@@ -35,11 +35,11 @@ public class Favorite {
     public Favorite() {
     }
 
-    public User getUser() {
+    public UserModel getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(UserModel user) {
         this.user = user;
     }
 

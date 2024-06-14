@@ -4,7 +4,6 @@ package com.example.digital_clothing_shop.Controllers;
 import com.example.digital_clothing_shop.Enums.OrderStatus;
 import com.example.digital_clothing_shop.Models.Order;
 import com.example.digital_clothing_shop.Requests.CreateOrderRequest;
-import com.example.digital_clothing_shop.Services.OrderReviewService;
 import com.example.digital_clothing_shop.Services.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,9 +16,6 @@ import java.util.List;
 public class OrderController {
     @Autowired
     private OrderService orderService;
-
-    @Autowired
-    private OrderReviewService orderReviewService;
 
     @GetMapping
     public List<Order> getAllOrders() {

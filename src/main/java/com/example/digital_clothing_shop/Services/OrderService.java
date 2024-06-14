@@ -4,7 +4,7 @@ package com.example.digital_clothing_shop.Services;
 import com.example.digital_clothing_shop.Enums.OrderStatus;
 import com.example.digital_clothing_shop.Models.Clothing;
 import com.example.digital_clothing_shop.Models.Order;
-import com.example.digital_clothing_shop.Models.User;
+import com.example.digital_clothing_shop.Models.UserModel;
 import com.example.digital_clothing_shop.Repositories.ClothingRepository;
 import com.example.digital_clothing_shop.Repositories.OrderRepository;
 import com.example.digital_clothing_shop.Repositories.UserRepository;
@@ -33,7 +33,7 @@ public class OrderService {
     }
 
     public List<Order> getUsersOrders(Integer userId){
-        Optional<User> user = this.userRepository.findById(userId);
+        Optional<UserModel> user = this.userRepository.findById(userId);
 
         if(user.isPresent()){
             return this.orderRepository.findByOrderingUser(user.get());
