@@ -49,6 +49,7 @@ public class ClothingController {
 
     @DeleteMapping("/review/delete")
     public ResponseEntity<Void> deleteReview(@PathVariable int reviewId){
+        
         this.clothingReviewService.deleteReview(reviewId);
 
         return ResponseEntity.ok().<Void>build();
