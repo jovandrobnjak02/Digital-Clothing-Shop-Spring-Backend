@@ -2,6 +2,7 @@ package com.example.digital_clothing_shop.Controllers;
 
 import com.example.digital_clothing_shop.Models.Favorite;
 import com.example.digital_clothing_shop.Models.UserModel;
+import com.example.digital_clothing_shop.Requests.RegisterRequest;
 import com.example.digital_clothing_shop.Security.JwtUtils;
 import com.example.digital_clothing_shop.Services.FavoritesService;
 import com.example.digital_clothing_shop.Services.UserService;
@@ -50,11 +51,12 @@ public class UserController {
     }
 
      @PostMapping("/register")
-    public ResponseEntity<UserModel> registerUser(@RequestBody UserModel user) {
+    public ResponseEntity<UserModel> registerUser(@RequestBody RegisterRequest user) {
         if (userService.getByEmail(user.getEmail()).isPresent()) {
             return ResponseEntity.badRequest().body(null);
         }
-        return ResponseEntity.ok(userService.saveUser(user));
+        
+        return ResponseEntity.ok(userService.registerUser(user));
     }
 
     @PostMapping("/login")

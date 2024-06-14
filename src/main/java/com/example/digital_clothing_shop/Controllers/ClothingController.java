@@ -2,11 +2,9 @@ package com.example.digital_clothing_shop.Controllers;
 
 import com.example.digital_clothing_shop.Models.Clothing;
 import com.example.digital_clothing_shop.Models.ClothingReview;
-import com.example.digital_clothing_shop.Models.Favorite;
 import com.example.digital_clothing_shop.Requests.ClothingReviewRequest;
 import com.example.digital_clothing_shop.Services.ClothingReviewService;
 import com.example.digital_clothing_shop.Services.ClothingService;
-import com.example.digital_clothing_shop.Services.FavoritesService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -25,8 +23,6 @@ public class ClothingController {
     @Autowired
     private ClothingReviewService clothingReviewService;
 
-    @Autowired
-    private FavoritesService favoritesService;
 
     @GetMapping
     public List<Clothing> getAllClothes(){

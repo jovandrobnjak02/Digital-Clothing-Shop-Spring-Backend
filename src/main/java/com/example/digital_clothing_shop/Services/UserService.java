@@ -2,6 +2,8 @@ package com.example.digital_clothing_shop.Services;
 
 import com.example.digital_clothing_shop.Models.UserModel;
 import com.example.digital_clothing_shop.Repositories.UserRepository;
+import com.example.digital_clothing_shop.Requests.RegisterRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -31,9 +33,18 @@ public class UserService {
     }
 
     public UserModel saveUser(UserModel user) {
-       String newPassword = passwordEncoder.encode(user.getPasswordHash());
-       user.setPasswordHash(newPassword);
+        user.setPasswordHash(passwordEncoder.encode(user.getPasswordHash()));
         return userRepository.save(user);
+    }
+
+    public UserModel registerUser(RegisterRequest user) {
+
+        UserModel newUser = new UserModel();
+        newUser.setPasswordHash(passwordEncoder.encode(user.getPassword()));
+        newUser.setLastName(user.getLastName());
+        newUser.setEmail(user.getEmail());
+        newUser.setFirstName(user.getFirstName());
+        return userRepository.save(newUser);
     }
 
     public void deleteUser(Integer userId) {

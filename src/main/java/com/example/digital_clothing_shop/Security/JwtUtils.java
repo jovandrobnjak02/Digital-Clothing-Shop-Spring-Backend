@@ -40,7 +40,7 @@ public class JwtUtils {
                 .claim("roles", roles)
                 .setIssuedAt(now)
                 .setExpiration(expiryDate)
-                .signWith(SignatureAlgorithm.HS512, key)
+                .signWith(key, SignatureAlgorithm.HS512)
                 .compact();
     }
 

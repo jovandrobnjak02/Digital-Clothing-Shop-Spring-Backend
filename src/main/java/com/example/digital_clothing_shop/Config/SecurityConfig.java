@@ -39,12 +39,10 @@ public class SecurityConfig {
         http
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/public/users/register", "/public/users/login").permitAll()
-                .requestMatchers(HttpMethod.POST, "/api/products").permitAll()
-                .requestMatchers(HttpMethod.DELETE, "/api/products/{id}").permitAll()
-                .requestMatchers(HttpMethod.PUT, "/api/products/{id}").hasRole("ADMIN")  
-                .requestMatchers("/api/admin/**").hasRole("ADMIN")  
-                .requestMatchers("/api/user/**").hasRole("USER") 
+                .requestMatchers("/users/register", "/users/login").permitAll()
+                .requestMatchers(HttpMethod.GET, "/products/**").permitAll()
+                .requestMatchers("/admin/**").hasRole("ADMIN")  
+                .requestMatchers("/users/**").hasRole("USER") 
                 .anyRequest().authenticated())
             .addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
 
