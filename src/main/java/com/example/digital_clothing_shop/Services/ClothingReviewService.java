@@ -46,8 +46,8 @@ public class ClothingReviewService {
         return this.clothingReviewRepository.save(newReview);
     }
 
-    public ResponseEntity<ClothingReview> editReview(ClothingReviewRequest data){
-        return (this.clothingReviewRepository.findById(data.getClothingId())).map((review) -> {
+    public ResponseEntity<ClothingReview> editReview(ClothingReviewRequest data, Integer reviewId){
+        return (this.clothingReviewRepository.findById(reviewId)).map((review) -> {
             review.setComment(data.getComment());
             review.setGrade(data.getGrade());
             return ResponseEntity.ok(clothingReviewRepository.save(review));

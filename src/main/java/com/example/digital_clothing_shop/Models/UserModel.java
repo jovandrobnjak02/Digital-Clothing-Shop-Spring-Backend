@@ -6,7 +6,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class UserModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,18 +33,15 @@ public class User {
     @OneToMany(mappedBy = "orderingUser")
     private Set<Order> usersOrders;
 
-    public User(Integer id, String firstName, String lastName, String email, String phone, String address, String passwordHash, Set<Order> usersOrders) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.phone = phone;
-        this.address = address;
-        this.passwordHash = passwordHash;
-        this.usersOrders = usersOrders;
-    }
+    @ManyToMany
+    @JoinTable(
+        name = "user_roles",
+        joinColumns = @JoinColumn(name = "user_id"),
+        inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private Set<Role> roles;
 
-    public User() {
+    public UserModel() {
     }
 
     public Integer getId() {
@@ -109,5 +106,13 @@ public class User {
 
     public void setUsersOrders(Set<Order> usersOrders) {
         this.usersOrders = usersOrders;
+    }
+
+    public void setRoles(Set<Role> roles){
+        this.roles = roles;
+    }
+
+    public Set<Role> getRoles(){
+        return roles;
     }
 }

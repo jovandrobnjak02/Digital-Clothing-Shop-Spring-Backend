@@ -46,6 +46,8 @@ CREATE TABLE "users" (
     "address" TEXT,
     "password_hash" TEXT NOT NULL
 );
+INSERT INTO "users" ("email", "password_hash", "first_name", "last_name") VALUES
+('testing@testing', 'c2lmcmExMjM=', 'Test', 'Test');
 
 CREATE TABLE user_orders (
 	 "id" SERIAL PRIMARY KEY,

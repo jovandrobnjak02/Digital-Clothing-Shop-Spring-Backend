@@ -21,7 +21,7 @@ public class Order {
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
-    private User orderingUser;
+    private UserModel orderingUser;
 
     @ManyToMany
     @JoinTable(
@@ -31,7 +31,7 @@ public class Order {
     )
     private List<Clothing> orderedClothes;
 
-    public Order(Long id, OrderStatus status, Double amount, User orderingUser, List<Clothing> orderedClothes) {
+    public Order(Long id, OrderStatus status, Double amount, UserModel orderingUser, List<Clothing> orderedClothes) {
         this.id = id;
         this.status = status;
         this.amount = amount;
@@ -66,11 +66,11 @@ public class Order {
         this.amount = amount;
     }
 
-    public User getOrderingUser() {
+    public UserModel getOrderingUser() {
         return orderingUser;
     }
 
-    public void setOrderingUser(User orderingUser) {
+    public void setOrderingUser(UserModel orderingUser) {
         this.orderingUser = orderingUser;
     }
 
