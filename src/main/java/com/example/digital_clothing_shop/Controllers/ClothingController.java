@@ -11,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/products")
@@ -53,7 +52,6 @@ public class ClothingController {
 
         return ResponseEntity.ok().<Void>build();
     }
-
 
     @GetMapping("/{clothingId}")
     public Optional<Clothing> getOne(@PathVariable int clothingId){
