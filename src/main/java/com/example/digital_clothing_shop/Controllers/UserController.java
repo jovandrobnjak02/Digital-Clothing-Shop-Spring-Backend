@@ -38,9 +38,9 @@ public class UserController {
     @Autowired
     private FavoritesService favoritesService;
 
-    @GetMapping("/{userId}")
-    public ResponseEntity<UserModel> getUserById(@PathVariable Integer userId) {
-        Optional<UserModel> user = userService.getOne(userId);
+    @GetMapping("/{id}")
+    public ResponseEntity<UserModel> getUserById(@PathVariable Integer id) {
+        Optional<UserModel> user = userService.getOne(id);
         return user.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
@@ -78,7 +78,7 @@ public class UserController {
         return ResponseEntity.ok(Collections.singletonMap("token", token));
     }
 
-    @PutMapping("/{userId}")
+    @PutMapping("/edit/{userId}")
     public ResponseEntity<UserModel> updateUser(@PathVariable Integer userId, @RequestBody UserModel userDetails) {
         Optional<UserModel> optionalUser = userService.getOne(userId);
         if (optionalUser.isPresent()) {
@@ -96,14 +96,14 @@ public class UserController {
         }
     }
 
-    @DeleteMapping("/{userId}")
+    @DeleteMapping("/delete/{userId}")
     public ResponseEntity<Void> deleteUser(@PathVariable Integer userId) {
         userService.deleteUser(userId);
         return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/favorites")
-    public ResponseEntity<List<Favorite>> getUserFavorites(@PathVariable Integer userId) {
+    public ResponseEntity<List<Favorite>> getUserFavorites(@RequestParam Integer userId) {
         List<Favorite> favorites = favoritesService.getUserFavorites(userId);
         return ResponseEntity.ok(favorites);
     }
